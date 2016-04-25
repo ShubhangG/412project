@@ -6,14 +6,10 @@ class Encoder():
 		self.encoders = {}
 		for feature in features:
 			self.encoders[feature] = preprocessing.LabelEncoder()
+	
 	def encodeDataset(self, dataframe):
-		
 		for encoder in self.encoders:
-			# print encoder
-			# print dataframe.columns.values
-			# quit()
 			if encoder in dataframe:
-
 				dataframe[encoder] = self.encoders[encoder].fit_transform(dataframe[encoder])
 		return dataframe
 
