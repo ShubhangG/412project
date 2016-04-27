@@ -23,7 +23,7 @@ def preprocessing(dataframe):
 	
 	dataframe = encoder.encodeDataset(dataframe)
 	labels = dataframe['country_destination']
-	del dataframe['country_destination']
+	# del dataframe['country_destination']
 	numerical = np.array(dataframe)
 	numerical = np.nan_to_num(numerical)
 	return dataframe, numerical, labels, encoder
@@ -40,7 +40,13 @@ def main():
 	dataframe = pd.DataFrame(pd.read_csv(f))
 	dataframe, numerical, labels, encoder = preprocessing(dataframe)
 	X_train, X_test, y_train, y_test = createValidation(numerical, labels, .3, .6)
-	print encoder.decode(y_train, 'country_destination')
+	# print encoder.decode(y_train, 'country_destination')
+	print np.unique(y_train)
+	print encoder.decode(np.unique(y_train), 'country_destination')
+	k = KMeans(data=X_train, labels=y_train, k=12)
+	result = k.findCenters()
+	k.predict(X_test, y_test)
+	# k.initCentroids()
 
 if __name__ == '__main__':
 	main()

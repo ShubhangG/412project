@@ -1,0 +1,102 @@
+# def column(matrix, i):
+# 	return [row[i] for row in matrix]
+
+# attribute = {}		#A dictionary of arrays
+	# for country, data in numeric_data.iteritems():
+	# 	attribute[country] = []
+	# # 	mean_of_data[country] = []
+	# # 	std_of_data[country] = []
+
+	# for country, data in numeric_data.iteritems():
+	# 	for i in range(0,len(data[0])):
+	# 		attribute[country].append(column(data, i))
+
+	#print reduce(lambda x, y: x+y,attribute['US'][0])/len(attribute['US'][0])
+
+	# for country, data in attribute.iteritems()
+	# 	mean_of_data[country].append(attribute[country].mean)
+
+	#print len(attribute['US'])
+	# 	for row in numeric_data[country]:
+	# 		for i in range(0,len(row)):
+
+	# mean_of_data['US'] = numeric_data['US'].mean(axis = 0)
+	# mean_of_data['AU'] = numeric_data['AU'].mean(axis = 0)
+	# mean_of_data['CA'] = numeric_data['CA'].mean(axis = 0)
+	# mean_of_data['DE'] = numeric_data['DE'].mean(axis = 0)
+	# mean_of_data['ES'] = numeric_data['ES'].mean(axis = 0)
+	# mean_of_data['FR'] = numeric_data['FR'].mean(axis = 0)
+	# mean_of_data['GB'] = numeric_data['GB'].mean(axis = 0)
+	# mean_of_data['IT'] = numeric_data['IT'].mean(axis = 0)
+	# mean_of_data['NL'] = numeric_data['NL'].mean(axis = 0)
+	# mean_of_data['PT'] = numeric_data['PT'].mean(axis = 0)
+
+	# def column(matrix, i):
+# 	return [row[i] for row in matrix]
+
+#print mean_of_data['US']
+
+	# for country, data in mean_of_data.iteritems():
+	# 	for i in range(0, len(data)):
+	# 		summaries[country][i] = (mean_of_data[country][i], std_of_data[country][i])		#summary provides mean, std pairs
+	
+	# return summaries
+
+	# std_of_data['US'] = numeric_data['US'].std(axis = 1)
+	# std_of_data['AU'] = numeric_data['AU'].std(axis = 1)
+	# std_of_data['CA'] = numeric_data['CA'].std(axis = 1)
+	# std_of_data['DE'] = numeric_data['DE'].std(axis = 1)
+	# std_of_data['ES'] = numeric_data['ES'].std(axis = 1)
+	# std_of_data['FR'] = numeric_data['FR'].std(axis = 1)
+	# std_of_data['GB'] = numeric_data['GB'].std(axis = 1)
+	# std_of_data['IT'] = numeric_data['IT'].std(axis = 1)
+	# std_of_data['NL'] = numeric_data['NL'].std(axis = 1)
+	# std_of_data['PT'] = numeric_data['PT'].std(axis = 1)
+
+	# for country, mean in mean_of_data.iteritems():
+	# 	for x in numeric_data[country]:
+	# 		pdf[country] = 1/sqrt(2*math.pi)(std_of_data[country]
+
+		#class_probabilities = calculate_class_prob(summaries)
+	
+
+	# for country, data in mean_of_data.iteritems():
+	# 	for x in range(0, len(numeric_data[country])):
+
+	#for x in range(0,len(numeric_data[country]))
+	# return pdf
+
+	# def predict(input_vector, mean_data, std_data, country):
+	
+# 	for mean in mean_data[country]:
+
+#print mean_data['US'][0]
+
+# for std in std_data['US']:
+# 	print std
+
+#print  Setup_Naive_Bayes(dataframe)
+# print numeric_data['US'][0]
+# print len(numeric_data['US'][0])
+#print numeric_data['US'][0][0]
+#seperate_into_class(dataframe)
+#print dataframe.loc[dataframe['country_destination'] == 'US']
+#dataframe, numerical, labels, encoder = preprocessing(dataframe)
+#print numerical
+
+
+f = 'train_users_2.csv'
+test_file = 'test_users.csv'
+dataframe = pd.DataFrame(pd.read_csv(f))
+testdf = pd.DataFrame(pd.read_csv(test_file))
+
+mean_data, std_data = Setup_Naive_Bayes(dataframe)
+
+predicted_labels = Naive_Bayes_Predictor(testdf, mean_data, std_data)
+
+count = 0
+for label in predicted_labels:
+	if label != 'US':
+		count+=1
+
+print count
