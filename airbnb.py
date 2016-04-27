@@ -53,12 +53,14 @@ def main():
 
     f_test ='data/test_users.csv'
     dataframe_real = pd.DataFrame(pd.read_csv(f_test))
-    dataframe_real, numerical_real, labels_real, encoder_real, ids_real = preprocessing(dataframe_real)
+    dataframe_real, numerical_real, labels_real, encoder_real, ids_real = reduceLabels(dataframe_real)
     X_train_real, X_test_real, y_train_real, y_test_real, test_ids_real = createValidation(numerical, labels, 1, 0, ids_real)
 
 
     tree = create_decision_tree(X_train)
-    classify_on_DT(tree, y_test_real, X_test_real,encoder_real, test_ids_real)
+    classify_on_DT(tree, y_test, X_test,encoder, test_ids)
+    #This is what you need to call with the previously gnereated tree, the encoder, and the user ids
+    #classify_real_DT(tree, ALL_DATA, encoder_real, test_ids_real)
 """
     print np.unique(y_train)
     print encoder.decode(np.unique(y_train), 'country_destination')
@@ -95,6 +97,14 @@ def classify_on_DT(myTree, y_test, X_test, encoder,test_ids):
 
     print("My accuracy: " + str(correct / len(myList)))
 
+#this is what you should call to create the output file
+def classify_real_DT(myTree, X_test, encoder, test_ids):
+    print("classifying with tree")
+    thefile = open("outputFile.txt", 'w')
+    ids = np.array(test_ids)
+    for row in range(0, len(X_test)):
+        prediction = DTClassV3.classify(X_test[row], myTree)
+        thefile.write("%s\n" % ids[row]+ "," + (encoder.decode(prediction, 'country_destination')))
 
 if __name__ == '__main__':
     main()
