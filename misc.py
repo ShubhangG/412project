@@ -117,7 +117,6 @@ class KMeans():
         for i in range(len(clusters)):
             print "Elements in {}".format(i)
             print len(clusters[i])
-
         print len(clusters)
 
     def findCenters(self):

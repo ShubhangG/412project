@@ -51,7 +51,6 @@ def main():
     result = k.findCenters()
     k.predict(X_test, y_test)
 
-
 # k.initCentroids()
 
 if __name__ == '__main__':
