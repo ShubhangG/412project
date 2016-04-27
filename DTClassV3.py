@@ -1,6 +1,5 @@
 import math
-from PIL import Image, ImageDraw
-
+from collections import Counter
 
 def partition_set_on_column(rows, column, value):
     set1 = [row for row in rows if row[column] >= value]
@@ -9,6 +8,7 @@ def partition_set_on_column(rows, column, value):
 
 
 def uniquecounts(rows):
+
     results = {}
     for row in rows:
         r = row[len(row) - 1]
@@ -42,6 +42,8 @@ class decisionnode:
 def buildtree(data):
     if len(data) == 0:
         return decisionnode()  # len(rows) is the number of units in a set
+    if len(data) < 2: #prune to acoid overfitting
+        return decisionnode(leaf=True, results=uniquecounts(data))
 
     current_score = calculate_entropy(data)
 
