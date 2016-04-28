@@ -106,5 +106,6 @@ def classify_real_DT(myTree, X_test, encoder, test_ids):
         prediction = DTClassV3.classify(X_test[row], myTree)
         thefile.write("%s\n" % ids[row]+ "," + (encoder.decode(prediction, 'country_destination')))
 
+
 if __name__ == '__main__':
     main()
